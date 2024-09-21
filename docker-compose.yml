@@ -1,0 +1,16 @@
+services:
+  db:
+    image: mysql:latest
+    container_name: db-container
+    environment:
+      MYSQL_DATABASE: "laravel"
+      MYSQL_ROOT_PASSWORD: "pass"
+      TZ: "Asia/Tokyo"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    expose:
+      - "3309"
+    ports:
+      - "3309:3306"
+    volumes:
+      - ./initdb.d:/docker-entrypoint-initdb.d
+    restart: "always"
